@@ -1,0 +1,160 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: #f0f0f0; /* 网页背景颜色，模拟拍立得边缘 */
+    justify-content: flex-start; /* 调整此处，以支持顶部对齐 */
+    align-items: center; /* 可以保留，因为它对水平中心对齐 */
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    padding-bottom: 5px; /* 保留底部间距 */
+
+
+}
+
+#outer-container {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    padding-bottom: 5px;
+}
+
+
+#inner-container {
+    width: 95%;
+    height: 80%;
+    background-color: #C3C2BF;
+    overflow-y: auto;
+    margin-top: 20px; /* 顶部间距 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px; /* 顶部间距 */
+}
+
+
+
+#filters-container {
+    bottom: 5px;
+
+    transform: translateX(20px); /* 向右移动 */
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    width: 100%; /* 确保填充父元素的宽度 */
+    justify-content: flex-start; /* 从左侧开始排列子元素 */
+    left: 2.5%; /* 保持与 #inner-container 左对齐 */
+    transform: translateX(30px); /* 向右移动 */
+}
+
+.filter-column {
+    margin-right: 40px;
+}
+
+.filter-title {
+    font-weight: bold;
+    display: block; /* 使标题单独一行 */
+    font-size: 12px; 
+
+}
+
+.filter-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0px;  /* 使用视窗高度的一部分来设置间距 */
+    font-size: 10px; 
+}
+
+
+
+
+.filter-options.month-grid {
+    grid-template-columns: 1fr 1fr;  /* 维持两列布局 */
+    grid-template-rows: repeat(6, auto); /* 每列六个月份 */
+    gap: 1px 20px;  /* 减小行间距，增大列间距 */
+}
+
+.filter-option {
+    position: relative; /* 为红点提供定位上下文 */
+    margin: 5px 0;
+    cursor: pointer;
+    padding: 2px;
+    padding-left: 20px; /* 为红点留出足够空间 */
+    display: block; /* 确保选项为块级元素，占满整个列宽 */
+}
+
+.filter-option:hover::before,
+.filter-option.active::before {
+    content: "•";
+    color: red;
+    position: absolute; /* 使用绝对定位 */
+    left: 0; /* 红点出现在文本左侧 */
+    top: 50%; /* 垂直居中 */
+    transform: translateY(-50%); /* 精确居中 */
+    font-size: 12px; /* 适当字体大小以保证不影响布局 */
+}
+
+#animal-info {
+    position: absolute;
+    right: 45px; /* 相对于outer-container右侧30px */
+    bottom: 40px; /* 相对于outer-container底部10px */
+    width: 300px;
+    height: 200px;
+    background-color: #ffffff;
+    padding: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+
+#animal-info h4 {
+    font-size: 12px; /* 标题字体大小 */
+    color: #333; /* 可以调整颜色 */
+    margin-bottom: 5px; /* 下边距 */
+}
+
+#animal-info p {
+    font-size: 10px; /* 段落文字大小 */
+    color: #666; /* 文字颜色 */
+    margin: 2px 0; /* 段落间距 */
+}
+
+#animalDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* 保持现有的布局，使元素平均分布 */
+    align-items: flex-start; /* 确保元素从容器顶部开始对齐 */
+    width: 100%; /* 使用100%宽度以适应父容器 */
+    height: auto; /* 高度自适应内容 */
+    position: relative; /* 确保 #animalDisplay 相对定位，以便内部元素正确放置 */
+    padding: 5px; /* 为了与 #inner-container 边缘保持一定距离 */
+}
+
+.animal-img {
+    width: calc(12.5% - 10px); /* 100% / 8 = 12.5% 减去两边的间隙 */
+    margin: 5px; /* 假设每侧间隙为5px */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animal-img img {
+    width: 100%; /* 图片宽度占满整个.animal-img容器 */
+    height: auto; /* 高度自动调整以保持图片比例 */
+    object-fit: cover; /* 裁剪图片以覆盖整个容器，也可以使用contain确保图片完整显示 */
+}
